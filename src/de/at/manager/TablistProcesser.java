@@ -1,5 +1,6 @@
 package de.at.manager;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,7 +95,12 @@ public class TablistProcesser {
 			public void run() {
 				
 				for(Player p : Bukkit.getOnlinePlayers()) {
-					Tablist.sendTablist(p, header.get(i1), footer.get(i2));
+					try {
+						Tablist.sendTablist(p, header.get(i1), footer.get(i2));
+					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException | NoSuchMethodException | SecurityException
+							| ClassNotFoundException | NoSuchFieldException e) {
+					}
 				}
 				
 				if(i1 < size1) {
